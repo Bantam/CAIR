@@ -261,7 +261,7 @@ inline CML_byte Grayscale_Pixel( CML_RGBA * pixel )
 //Our thread function for the Grayscale
 void * Gray_Quadrant( void * id )
 {
-	int num = id;
+	int num = (uintptr_t)id;
 
 	while( true )
 	{
@@ -426,7 +426,7 @@ int Convolve_Pixel( CML_gray * Source, int x, int y, edge_safe safety, CAIR_conv
 //The thread function, splitting the image into strips
 void * Edge_Quadrant( void * id )
 {
-	int num = id;
+	int num = (uintptr_t)id;
 
 	while( true )
 	{
@@ -620,7 +620,7 @@ inline int Forward_CostR( CML_int * Edge, int x, int y )
 //=========================================================================================================//
 void * Energy_Left( void * id )
 {
-	int num = id;
+	int num = (uintptr_t)id;
 	int energy = 0;// current calculated enery
 	int min_x = 0, max_x = 0;
 
@@ -735,7 +735,7 @@ void * Energy_Left( void * id )
 //=========================================================================================================//
 void * Energy_Right( void * id )
 {
-	int num = id;
+	int num = (uintptr_t)id;
 	int energy = 0;// current calculated enery
 	int min_x = 0, max_x = 0;
 
@@ -946,7 +946,7 @@ CML_RGBA Average_Pixels( CML_RGBA Pixel1, CML_RGBA Pixel2 )
 //This works like Remove_Quadrant, stripes across the image.
 void * Add_Quadrant( void * id )
 {
-	int num = id;
+	int num = (uintptr_t)id;
 	Thread_Params add_area;
 
 	while( true )
@@ -1261,7 +1261,7 @@ bool CAIR_Add( CML_color * Source, CML_int * Weights, int goal_x, int add_weight
 //the areas are not quadrants, rather, more like strips, but I keep the name convention
 void * Remove_Quadrant( void * id )
 {
-	int num = id;
+	int num = (uintptr_t)id;
 	Thread_Params remove_area;
 
 	while( true )
